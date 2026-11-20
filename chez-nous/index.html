@@ -676,6 +676,7 @@ map.on('zoomend',function(){rendre(false)});
 /* molette : seulement après un clic sur la carte, pour ne pas bloquer le défilement de la page */
 map.on('focus',function(){map.scrollWheelZoom.enable()});map.on('blur',function(){map.scrollWheelZoom.disable()});
 majMaison();
+if(maison&&!L.latLngBounds(VUE).contains([maison.lat,maison.lon])&&MODE!=='guide-autour')map.fitBounds(L.latLngBounds(VUE).extend([maison.lat,maison.lon]),{padding:[24,24]});
 rendre(true);
 /* lien direct #lieu=id */
 var H1=lireHash();if(H1.lieu){var p0=byId(H1.lieu);if(p0){map.setView([p0.lat,p0.lon],16);ouvrir(p0,false)}}
